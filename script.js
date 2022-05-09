@@ -34,7 +34,7 @@ function changeColor(e){
         case "black":
             e.target.style.backgroundColor = "rgb(0,0,0)";
             break;
-        case "rainbow":
+        case "random":
             let r = Math.floor(Math.random()*255);
             let g = Math.floor(Math.random()*255);
             let b = Math.floor(Math.random()*255);
@@ -62,7 +62,7 @@ function changeColor(e){
 
             break;
         default:
-            e.target.style.backgroundColor = "black";
+            e.target.style.backgroundColor = "rgb(0,0,0)";
     }     
 }
 
@@ -73,7 +73,7 @@ function newGrid(e){
     while(container.firstChild){
         container.removeChild(container.firstChild);
     }
-    let n_grid = prompt("Enter the size of grid");
+    let n_grid = prompt("Enter the size of grid",15);
     createGrid(n_grid);
 }
 
@@ -88,8 +88,15 @@ eraser.addEventListener("click",switchColor);
 const black = document.querySelector("#black");
 black.addEventListener("click",switchColor);
 
-const rainbow = document.querySelector("#rainbow");
-rainbow.addEventListener("click",switchColor);
+const random = document.querySelector("#random");
+random.addEventListener("click",switchColor);
 
 const increment_black = document.querySelector("#increment_black");
 increment_black.addEventListener("click",switchColor);
+
+const clear = document.querySelector("#clear");
+clear.addEventListener("click",clearGrid);
+
+function clearGrid(){
+    gridElements.forEach(element => {element.style.backgroundColor = "rgb(255,255,255)";})
+}
